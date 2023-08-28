@@ -34,7 +34,7 @@ model JournalEntry {
 
   content String @db.Text
 
-  @@index([userId])
+  @@unique([userId, id])
 }
 
 model Analysis {
