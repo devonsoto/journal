@@ -5,6 +5,7 @@ const DashBoardLayout = ({ children }) => {
   const links = [
     { href: '/', label: 'Home' },
     { href: '/journal', label: 'Journal' },
+    { href: '/history', label: 'History' },
   ]
 
   return (
