@@ -1,5 +1,5 @@
 // will give us the full url
-const createURL = (path: string) => {
+export const createURL = (path: string) => {
   return window.location.origin + path
 }
 
