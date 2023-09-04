@@ -33,15 +33,20 @@ const teams = [
   { name: 'Wolverhampton Wanderers', color: '#FDB913' },
 ]
 
-const TeamDropdown = (options) => {
-  const [team, setTeam] = useState('Arsenal')
+interface Props {
+  name: string
+}
+
+const TeamDropdown = (name: string) => {
+  console.log('name', name)
+  const [team, setTeam] = useState('name')
 
   const handleOnClick = async (team) => {
     // do things here
 
     const data = await createTeam(team)
-    console.log('data', data)
-    // setTeam(data.content.name)
+    console.log('data', data.name)
+    setTeam(data.name)
   }
 
   return (

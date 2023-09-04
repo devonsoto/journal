@@ -3,33 +3,39 @@ import { prisma } from '@/utils/db'
 
 import { NextResponse } from 'next/server'
 
-
-export const POST = async (req) => {
-
-
+export const PUT = async (req) => {
   const user = await getUserByClerkID()
-  const data = await req.json()
+  const { content } = await req.json()
 
-  console.log(data)
+  console.log(content)
 
-  // const team = await prisma.team.create({
-  //   data: {
-  //     userId: user.id,
-  //     ...team
-  //   }
-  // })
+  const team = await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      team: {
+        connect: {
+          ...content,
+        },
+      },
+    },
+  })
 
+  return NextResponse.json({ data: content })
+}
 
+export const GET = async () => {
+  const user = await getUserByClerkID()
 
-  return NextResponse.json({ data: data })
+  const team = await prisma.user.findUnique({
+    where: {
+      id: user.id,
+    },
+    select: {
+      team: true,
+    },
+  })
 
-
-
-  // const team = await prisma.team.create({
-
-  // })
-
-
-
-
+  return NextResponse.json({ data: team })
 }
