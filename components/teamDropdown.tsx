@@ -37,9 +37,8 @@ interface Props {
   name: string
 }
 
-const TeamDropdown = (name: string) => {
-  console.log('name', name)
-  const [team, setTeam] = useState('name')
+const TeamDropdown = (name) => {
+  const [team, setTeam] = useState(name.name)
 
   const handleOnClick = async (team) => {
     // do things here

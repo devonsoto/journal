@@ -31,5 +31,5 @@ export const getTeam = async () => {
     },
   })
 
-  return team
+  return team?.team
 }
