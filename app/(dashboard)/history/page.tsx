@@ -24,11 +24,9 @@ const History = async () => {
 
   console.log(analyses)
   return (
-    <div className="w-full h-full">
+    <div className="flex flex-col w-full">
       <div>{`Avg. Sentiment ${avg}`}</div>
-      <div className="w-full h-full">
-        <HistoryChart data={analyses} />
-      </div>
+      <HistoryChart data={analyses} />
     </div>
   )
 }

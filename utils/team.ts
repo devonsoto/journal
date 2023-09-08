@@ -33,3 +33,18 @@ export const getTeam = async () => {
 
   return team?.team
 }
+
+export const getTeams = async () => {
+  const teams = await prisma.team.findMany({
+    select: {
+      name: true,
+      color: true,
+    },
+  })
+
+  console.log('teams', teams)
+
+  return teams.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+  )
+}
