@@ -30,12 +30,13 @@ const Editor = ({ entry }) => {
     },
   })
 
+  // figure out why there is a scroll here
   return (
     <div className="w-full h-full grid grid-cols-3">
-      {isLoading && <div>loading...</div>}
-      <div className="col-span-2">
+      <div className="w-full h-full col-span-2 overflow-hidden">
+        {isLoading && <div>loading...</div>}
         <textarea
-          className="w-full h-full p-8 text-xl outline-none"
+          className="p-8 text-xl outline-none h-full w-full overflow-hidden"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

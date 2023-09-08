@@ -1,3 +1,6 @@
+import { getUserByClerkID } from './auth'
+import { prisma } from './db'
+
 // will give us the full url
 export const createURL = (path: string) => {
   return window.location.origin + path
@@ -45,4 +48,19 @@ export const askQuestion = async (question) => {
     const data = await res.json()
     return data.data // since we are always sending back an object with a data key
   }
+}
+
+export const getTotalEntries = async () => {
+  const user = await getUserByClerkID()
+
+  const entries = await prisma.journalEntry.findMany({
+    where: {
+      userId: user.id,
+    },
+    select: {
+      id: true,
+    },
+  })
+
+  return entries.length
 }
