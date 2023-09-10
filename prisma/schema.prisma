@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,46 +16,53 @@ model User {
   clerkId String @unique
   email   String @unique
 
-  entries JournalEntry[]
+  teamId   String?
+  entries  JournalEntry[]
   analysis Analysis[]
+  // Team     Team?          @relation(fields: [teamId], references: [id])
+  // Team     Team?          @relation(fields: [teamId], references: [id])
+  team     Team?          @relation(fields: [teamId], references: [id])
+  // teamId   String?
+
+  @@index([teamId])
 }
 
-model JournalEntry {
+model Team {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  name      String   @unique
+  color     String   @db.Text
+  users     User[]
+  // User      User[]
+}
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
-  analysis Analysis?
-
-  content String @db.Text
+model JournalEntry {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String
+  content   String    @db.Text
+  user      User      @relation(fields: [userId], references: [id])
+  analysis  Analysis?
 
   @@unique([userId, id])
 }
 
 model Analysis {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String       @id @default(uuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  entryId        String       @unique
+  userId         String
+  mood           String
+  summary        String       @db.Text
+  color          String
+  negative       Boolean
+  subject        String
+  sentimentScore Float        @default(0)
+  entry          JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  entryId String
-  entry   JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
-
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-
-
-  mood     String
-  summary  String  @db.Text
-  color    String
-  negative Boolean
-  subject  String
-  sentimentScore Float @default(0)
-
-
-  @@unique([entryId])
   @@index([userId])
 }
