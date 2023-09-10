@@ -14,6 +14,8 @@ Open AI's chatgpt. We can learn how this season's EPL teams
 are giving us a heart attack with those late
 winners.
 
+https://journal-tan.vercel.app/
+
 ## Features
 
 - **Team Selection**: Choose your favorite EPL team and customize your journal experience.
