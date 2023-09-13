@@ -30,8 +30,11 @@ https://journal-tan.vercel.app/
 
 For those who'd like to explore the app without signing up, you can use the following dummy user credentials:
 
-**Username**: journaltestuser@gmail.com  
-**Password**: journaltestuser10
+**Username**: arsenal+clerk_test@example.com
+
+**Password**: arsenaltestuser
+
+**Verification Code**: 424242
 
 ## Data Storage
 

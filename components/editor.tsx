@@ -9,7 +9,6 @@ const Editor = ({ entry }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [analysis, setAnalysis] = useState(entry.analysis)
 
-  console.log(analysis)
   const { mood, summary, subject, negative, color } = analysis
 
   const analysisData = [
@@ -36,7 +35,7 @@ const Editor = ({ entry }) => {
       <div className="w-full h-full col-span-2 overflow-hidden">
         {isLoading && <div>loading...</div>}
         <textarea
-          className="p-8 text-xl outline-none h-full w-full overflow-hidden"
+          className="p-8 text-xl outline-none h-full w-full overflow-y-scroll"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

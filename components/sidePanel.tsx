@@ -1,22 +1,13 @@
 'use client'
 
-import {
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-} from '@heroicons/react/24/outline'
+import { FolderIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline'
 
 import { UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
-import exp from 'constants'
 import { useState } from 'react'
-import { getTotalEntries } from '@/utils/api'
 
 const navigation = [
-  { name: 'Home', href: '/', icon: HomeIcon },
+  { name: 'Login', href: '/', icon: HomeIcon },
   {
     name: 'Journal',
     href: '/journal',
@@ -38,12 +29,6 @@ function classNames(...classes) {
 
 const SidePanel = ({ count }) => {
   const [page, setPage] = useState('home')
-  //   const [count, setCount] = useState(0)
-
-  //   const numEntries = async () => {
-  //     const res = await getTotalEntries()
-  //     setCount(res)
-  //   }
 
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 max-w-[250px]">
