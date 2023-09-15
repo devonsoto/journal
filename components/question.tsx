@@ -33,7 +33,7 @@ const Question = () => {
           disabled={loading}
           type="text"
           placeholder="Ask a Question"
-          className="border border-black/20 px-4 py-2 text-lg rounded-lg"
+          className="border border-black/20 px-4 py-2 text-lg rounded-lg mr-2"
         />
         <button
           type="submit"
