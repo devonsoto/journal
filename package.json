@@ -10,7 +10,6 @@
     "test": "vitest",
     "seed": "ts-node-esm prisma/seed.ts"
   },
-  "type": "module",
   "prisma": {},
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
