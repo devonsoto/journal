@@ -7,9 +7,7 @@ export const PUT = async (req) => {
   const user = await getUserByClerkID()
   const { content } = await req.json()
 
-  console.log(content)
-
-  const team = await prisma.user.update({
+  await prisma.user.update({
     where: {
       id: user.id,
     },

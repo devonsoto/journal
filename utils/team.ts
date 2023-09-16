@@ -3,8 +3,6 @@ import { getUserByClerkID } from './auth'
 import { prisma } from './db'
 
 export const createTeam = async (content) => {
-  console.log('create team', content)
-
   const res = await fetch(
     new Request(createURL(`/api/team`), {
       method: 'PUT',
@@ -13,7 +11,6 @@ export const createTeam = async (content) => {
   )
 
   if (res.ok) {
-    console.log('res ok')
     const data = await res.json()
     return data.data
   }
@@ -41,8 +38,6 @@ export const getTeams = async () => {
       color: true,
     },
   })
-
-  console.log('teams', teams)
 
   return teams.sort((a, b) =>
     a.name.toLowerCase().localeCompare(b.name.toLowerCase())

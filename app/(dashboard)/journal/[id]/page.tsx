@@ -23,8 +23,6 @@ const getEntry = async (id: string) => {
 const EntryPage = async ({ params }) => {
   const entry = await getEntry(params.id)
 
-  console.log('entry', entry)
-
   // it is called id because we named the folder id
   return (
     <div className="w-full h-full">

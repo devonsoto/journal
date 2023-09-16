@@ -52,7 +52,6 @@ const getPrompt = async (content: any) => {
     entry: content,
   })
 
-  console.log(input)
   return input
 
   // actual template
@@ -63,8 +62,6 @@ export const analyze = async (content) => {
   const input = await getPrompt(content)
   const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
   const results = await model.call(input)
-
-  console.log('results', results)
 
   try {
     return parser.parse(results)

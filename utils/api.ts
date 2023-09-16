@@ -7,7 +7,6 @@ export const createURL = (path: string) => {
 }
 
 export const updateEntry = async (id, content) => {
-  console.log('update entry', id, content)
   const res = await fetch(
     new Request(createURL(`/api/journal/${id}`), {
       method: 'PATCH',

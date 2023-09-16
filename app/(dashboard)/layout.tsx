@@ -2,10 +2,6 @@ import SidePanel from '@/components/sidePanel'
 
 import { getTotalEntries } from '@/utils/api'
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 const DashBoardLayout = async ({ children }) => {
   const res = await getTotalEntries()
 

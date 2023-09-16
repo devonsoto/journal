@@ -22,7 +22,6 @@ const getData = async () => {
 const History = async () => {
   const { analyses, avg } = await getData()
 
-  console.log(analyses)
   return (
     <div className="flex flex-col w-full">
       <div>{`Avg. Sentiment ${avg}`}</div>

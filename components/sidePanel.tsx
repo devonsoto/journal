@@ -5,6 +5,7 @@ import { FolderIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline'
 import { UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const navigation = [
   { name: 'Login', href: '/', icon: HomeIcon },
@@ -29,6 +30,16 @@ function classNames(...classes) {
 
 const SidePanel = ({ count }) => {
   const [page, setPage] = useState('home')
+  const router = useRouter()
+
+  const handleClick = (name) => {
+    setPage(name)
+    if (name === 'Team') {
+      // This isn't the correct way to do this,
+      // but it works for now. We'll get back to this later.
+      router.refresh()
+    }
+  }
 
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 max-w-[250px]">
@@ -43,7 +54,7 @@ const SidePanel = ({ count }) => {
               {navigation.map((item) => (
                 <li key={item.name}>
                   <Link
-                    onClick={() => setPage(item.name)}
+                    onClick={() => handleClick(item.name)}
                     href={item.href}
                     className={classNames(
                       page === item.name
