@@ -1,5 +1,8 @@
 import { getUserByClerkID } from './auth'
 import { prisma } from './db'
+import { revalidatePath } from 'next/cache'
+
+export const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
 
 // will give us the full url
 export const createURL = (path: string) => {
@@ -31,6 +34,18 @@ export const createNewEntry = async () => {
   if (res.ok) {
     const data = await res.json()
     return data.data // since we are always sending back an object with a data key
+  }
+}
+
+export const deleteEntry = async (id) => {
+  const res = await fetch(
+    new Request(createURL(`/api/journal/${id}`), { method: 'DELETE' })
+  )
+  try {
+    // TODO: There should be another way to do this
+    revalidatePath('/journal')
+  } catch (e) {
+    console.log(e)
   }
 }
 

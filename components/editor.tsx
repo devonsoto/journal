@@ -4,6 +4,8 @@ import { updateEntry } from '@/utils/api'
 import { useState } from 'react'
 import { useAutosave } from 'react-autosave'
 
+import DeleteButton from './deleteButton'
+
 const Editor = ({ entry }) => {
   const [value, setValue] = useState(entry.content)
   const [isLoading, setIsLoading] = useState(false)
@@ -56,6 +58,9 @@ const Editor = ({ entry }) => {
                 <span>{item.value}</span>
               </li>
             ))}
+            <li>
+              <DeleteButton entryId={entry.id} />
+            </li>
           </ul>
         </div>
       </div>

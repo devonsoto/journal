@@ -3,6 +3,30 @@ import { getUserByClerkID } from '@/utils/auth'
 import { prisma } from '@/utils/db'
 import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
+import { baseUrl } from '@/utils/api'
+import { redirect } from 'next/navigation'
+
+export const DELETE = async (request, { params }) => {
+  const user = await getUserByClerkID()
+
+  const { id } = params
+
+  const deleteEntry = await prisma.journalEntry.delete({
+    where: {
+      userId_id: {
+        userId: user.id,
+        id,
+      },
+    },
+  })
+
+  debugger
+  console.log('deleteEntry', deleteEntry)
+
+  if (deleteEntry) {
+    return NextResponse.redirect(`${baseUrl}/journal`)
+  }
+}
 
 export const PATCH = async (request, { params }) => {
   const user = await getUserByClerkID()

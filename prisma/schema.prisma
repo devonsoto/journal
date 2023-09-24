@@ -9,20 +9,15 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  clerkId String @unique
-  email   String @unique
-
-  teamId   String?
-  entries  JournalEntry[]
-  analysis Analysis[]
-  // Team     Team?          @relation(fields: [teamId], references: [id])
-  // Team     Team?          @relation(fields: [teamId], references: [id])
-  team     Team?          @relation(fields: [teamId], references: [id])
-  // teamId   String?
+  id        String         @id @default(uuid())
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  clerkId   String         @unique
+  email     String         @unique
+  teamId    String?
+  entries   JournalEntry[]
+  analysis  Analysis[]
+  team      Team?          @relation(fields: [teamId], references: [id])
 
   @@index([teamId])
 }
@@ -34,7 +29,6 @@ model Team {
   name      String   @unique
   color     String   @db.Text
   users     User[]
-  // User      User[]
 }
 
 model JournalEntry {
